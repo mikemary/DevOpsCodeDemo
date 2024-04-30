@@ -42,7 +42,7 @@ pipeline{
 		steps{
 		  script{
 		  withSonarQubeEnv(installationName: 'Sonar-10.5', credentialsId: 'Jenkins-Sonar')
-		    sh 'mvn Clean'
+		    sh 'mvn Clean package sonar:sonar'
 		  }
 		}
 	   }
