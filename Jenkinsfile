@@ -36,15 +36,23 @@ pipeline{
               }
           
           }
-        
+
+	   stage ('Sonar Quality Check'){
+
+		steps{
+		  script{
+		  withSonarQubeEnv(installationName: 'Sonar-10.5', credentialsId: 'Jenkins-Sonar')
+		    sh 'mvn sonar:sonar'
+		  }
+		}
+	   }
           stage('Package'){
 		  
               steps{
-		  
                   sh 'mvn package'
               }
           }
-	     
+		   
           
       }
 }
